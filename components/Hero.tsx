@@ -6,223 +6,158 @@ import PreOrderModal from './PreOrderModal';
 
 export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-bg-dark via-bg-dark-gray to-bg-dark" />
-        
-        {/* Animated Mesh Gradient */}
-        <motion.div
-          className="absolute top-0 left-0 w-full h-full opacity-30"
-          animate={{
-            background: [
-              'radial-gradient(circle at 20% 50%, #0066FF 0%, transparent 50%)',
-              'radial-gradient(circle at 80% 50%, #00D4FF 0%, transparent 50%)',
-              'radial-gradient(circle at 50% 80%, #8B5CF6 0%, transparent 50%)',
-              'radial-gradient(circle at 20% 50%, #0066FF 0%, transparent 50%)',
-            ],
+      {/* Subtle Grid Background */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(#0066FF 1px, transparent 1px), linear-gradient(90deg, #0066FF 1px, transparent 1px)',
+            backgroundSize: '100px 100px',
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
         />
-
-        {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary-cyan rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
       </div>
 
-      <div className="container mx-auto px-4 z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left: Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+      {/* Gradient Glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]" />
+
+      <div className="container mx-auto px-6 z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-block mb-4 px-4 py-2 glass rounded-full text-sm text-primary-cyan"
+              transition={{ duration: 0.6 }}
             >
-              Revolutionary Wearable Technology
-            </motion.div>
-
-            <motion.h1
-              className="text-6xl md:text-8xl font-bold mb-6 leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <span className="gradient-text">StayAwake</span>
-              <br />
-              <span className="text-white">Band</span>
-            </motion.h1>
-
-            <motion.p
-              className="text-xl md:text-2xl text-gray-400 mb-8 max-w-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              Advanced drowsiness detection meets progressive shock technology.
-              Stay alert, stay safe, stay in control.
-            </motion.p>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <motion.button
-                onClick={() => setIsModalOpen(true)}
-                className="px-8 py-4 bg-gradient-to-r from-primary to-primary-cyan rounded-full text-white font-semibold text-lg relative overflow-hidden group"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 mb-6"
               >
-                <span className="relative z-10">Pre-Order Now</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-primary-cyan to-primary"
-                  initial={{ x: '100%' }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
+                <div className="w-2 h-2 rounded-full bg-primary-cyan animate-pulse" />
+                <span className="text-sm font-medium text-primary-cyan">Advanced Safety Technology</span>
+              </motion.div>
 
-              <motion.button
-                className="px-8 py-4 glass rounded-full text-white font-semibold text-lg border border-white/20 hover:border-primary-cyan transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <motion.h1
+                className="text-5xl md:text-7xl font-black mb-6 leading-[1.1]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
               >
-                Watch Demo
-              </motion.button>
-            </motion.div>
-            
-            <PreOrderModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                <span className="bg-gradient-to-r from-primary via-primary-cyan to-primary bg-clip-text text-transparent">
+                  StayAwake
+                </span>
+                <br />
+                <span className="text-white">Band</span>
+              </motion.h1>
 
-            {/* Stats */}
-            <motion.div
-              className="grid grid-cols-3 gap-6 mt-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <div>
-                <div className="text-3xl font-bold gradient-text">24h</div>
-                <div className="text-sm text-gray-400">Battery Life</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold gradient-text">5</div>
-                <div className="text-sm text-gray-400">Alert Levels</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold gradient-text">IP67</div>
-                <div className="text-sm text-gray-400">Water Resistant</div>
-              </div>
-            </motion.div>
-          </motion.div>
+              <motion.p
+                className="text-xl text-gray-400 mb-8 leading-relaxed max-w-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                Intelligent drowsiness detection with progressive alert technology. 
+                Stay alert. Stay safe. Stay in control.
+              </motion.p>
 
-          {/* Right: Product Image */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {/* 3D Transform Container */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="group relative px-8 py-4 bg-gradient-to-r from-primary to-primary-cyan rounded-lg font-semibold text-white overflow-hidden"
+                >
+                  <span className="relative z-10">Pre-Order Now</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-cyan to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+
+                <button className="px-8 py-4 rounded-lg font-semibold text-white border border-white/10 hover:border-primary-cyan hover:bg-white/5 transition-all">
+                  Watch Demo
+                </button>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                className="grid grid-cols-3 gap-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+              >
+                {[
+                  { value: '24h', label: 'Battery Life' },
+                  { value: '98%', label: 'Accuracy' },
+                  { value: 'IP67', label: 'Water Resistant' },
+                ].map((stat, i) => (
+                  <div key={i}>
+                    <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-500">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Right: Product Visual */}
             <motion.div
-              className="relative w-full aspect-square"
-              whileHover={{ scale: 1.05, rotateY: 5, rotateX: 5 }}
-              transition={{ duration: 0.3 }}
-              style={{ perspective: 1000 }}
+              className="relative"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary-cyan/30 blur-3xl rounded-full" />
-              
-              {/* Product Image Placeholder */}
-              <div className="relative w-full h-full glass rounded-3xl flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="text-6xl mb-4">⌚</div>
-                  <p className="text-gray-400 text-sm">
-                    IMAGE NEEDED: Sleek smartwatch-style wearable device with a modern design.
-                    Dark silicone band, circular OLED display showing subtle blue interface.
-                    Floating in space with dramatic lighting. High-tech, premium feel.
-                    Perspective: 3/4 view, slightly tilted. Style: Product photography,
-                    clean background with gradient lighting.
-                  </p>
+              <div className="relative aspect-square">
+                {/* Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-cyan/20 rounded-full blur-3xl" />
+                
+                {/* Product Placeholder */}
+                <div className="relative w-full h-full rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm flex items-center justify-center p-8">
+                  <div className="text-center">
+                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/20 to-primary-cyan/20 flex items-center justify-center">
+                      <div className="w-24 h-24 rounded-full border-4 border-primary/50" />
+                    </div>
+                    <p className="text-sm text-gray-500 leading-relaxed">
+                      Product image: Premium wearable device with OLED display, 
+                      dark silicone band, floating in space with dramatic blue lighting
+                    </p>
+                  </div>
                 </div>
+
+                {/* Floating Stats */}
+                <motion.div
+                  className="absolute -top-4 -right-4 px-4 py-3 rounded-xl border border-white/10 bg-black/80 backdrop-blur-sm"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  <div className="text-xs text-gray-400">Heart Rate</div>
+                  <div className="text-lg font-bold text-primary-cyan">72 BPM</div>
+                </motion.div>
+
+                <motion.div
+                  className="absolute -bottom-4 -left-4 px-4 py-3 rounded-xl border border-white/10 bg-black/80 backdrop-blur-sm"
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity }}
+                >
+                  <div className="text-xs text-gray-400">Alert Level</div>
+                  <div className="text-lg font-bold text-accent">Active</div>
+                </motion.div>
               </div>
-
-              {/* Floating Elements */}
-              <motion.div
-                className="absolute -top-4 -right-4 glass rounded-2xl p-4"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <div className="text-2xl">⚡</div>
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-4 -left-4 glass rounded-2xl p-4"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity }}
-              >
-                <div className="text-2xl">❤️</div>
-              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.8 }}
-      >
-        <motion.div
-          className="flex flex-col items-center gap-2 cursor-pointer"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <span className="text-sm text-gray-400">Scroll to explore</span>
-          <svg
-            className="w-6 h-6 text-primary-cyan"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </motion.div>
-      </motion.div>
+      <PreOrderModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

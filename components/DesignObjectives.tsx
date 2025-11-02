@@ -5,15 +5,6 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { designObjectives } from '@/lib/content';
 
-const colorMap: { [key: string]: { from: string; to: string; glow: string } } = {
-  safety: { from: '#0066FF', to: '#00D4FF', glow: 'rgba(0, 102, 255, 0.3)' },
-  comfort: { from: '#EC4899', to: '#F472B6', glow: 'rgba(236, 72, 153, 0.3)' },
-  'ease-of-use': { from: '#10B981', to: '#34D399', glow: 'rgba(16, 185, 129, 0.3)' },
-  durability: { from: '#F59E0B', to: '#FBBF24', glow: 'rgba(245, 158, 11, 0.3)' },
-  'daily-usability': { from: '#8B5CF6', to: '#A78BFA', glow: 'rgba(139, 92, 246, 0.3)' },
-  affordability: { from: '#EF4444', to: '#F87171', glow: 'rgba(239, 68, 68, 0.3)' },
-};
-
 export default function DesignObjectives() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
@@ -32,49 +23,43 @@ export default function DesignObjectives() {
   };
 
   return (
-    <section id="objectives" className="min-h-screen py-24 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+    <section id="objectives" className="min-h-screen py-32 relative overflow-hidden bg-black">
+      {/* Subtle Grid */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(#0066FF 1px, transparent 1px), linear-gradient(90deg, #0066FF 1px, transparent 1px)',
+            backgroundSize: '100px 100px',
+          }}
+        />
       </div>
 
-      <div className="container mx-auto px-4" ref={ref}>
-        {/* Section Header */}
+      <div className="container mx-auto px-6" ref={ref}>
+        {/* Header */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
+          className="text-center mb-20 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <motion.h2
-            className="text-4xl md:text-6xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            Design <span className="gradient-text">Objectives</span>
-          </motion.h2>
-          <motion.p
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3 }}
-          >
-            Built with purpose. Designed for you. Every detail matters.
-          </motion.p>
+          <h2 className="text-4xl md:text-6xl font-black mb-6">
+            Design <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">Objectives</span>
+          </h2>
+          <p className="text-xl text-gray-400">
+            Six core principles that define every aspect of the StayAwake Band
+          </p>
         </motion.div>
 
-        {/* Flip Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Objectives Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {designObjectives.map((objective, index) => {
             const isFlipped = flippedCards.has(objective.id);
-            const colors = colorMap[objective.id];
 
             return (
               <motion.div
                 key={objective.id}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.1 * index, duration: 0.5 }}
                 className="h-64"
@@ -87,45 +72,27 @@ export default function DesignObjectives() {
                   transition={{ duration: 0.6 }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
-                  {/* Front Side */}
+                  {/* Front */}
                   <div
-                    className="absolute inset-0 rounded-2xl p-6 flex flex-col items-center justify-center text-center"
-                    style={{
-                      backfaceVisibility: 'hidden',
-                      background: `linear-gradient(135deg, ${colors.from}, ${colors.to})`,
-                      boxShadow: `0 20px 60px ${colors.glow}`,
-                    }}
+                    className="absolute inset-0 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm p-8 flex flex-col items-center justify-center text-center"
+                    style={{ backfaceVisibility: 'hidden' }}
                   >
-                    <motion.div
-                      className="text-6xl mb-4"
-                      whileHover={{ scale: 1.2, rotate: 10 }}
-                    >
-                      {objective.icon === 'shield' && '🛡️'}
-                      {objective.icon === 'heart' && '💖'}
-                      {objective.icon === 'zap' && '⚡'}
-                      {objective.icon === 'award' && '🏆'}
-                      {objective.icon === 'sun' && '☀️'}
-                      {objective.icon === 'dollar-sign' && '💎'}
-                    </motion.div>
-                    <h3 className="text-2xl font-bold text-white mb-2">
-                      {objective.title}
-                    </h3>
-                    <p className="text-white/80 text-sm">Click to learn more</p>
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary-cyan/20 flex items-center justify-center mb-6">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-cyan" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3">{objective.title}</h3>
+                    <p className="text-sm text-gray-500">Click to learn more</p>
                   </div>
 
-                  {/* Back Side */}
+                  {/* Back */}
                   <div
-                    className="absolute inset-0 rounded-2xl p-6 flex items-center justify-center text-center"
+                    className="absolute inset-0 rounded-2xl border border-primary/50 bg-gradient-to-br from-primary/10 to-primary-cyan/10 backdrop-blur-sm p-8 flex items-center justify-center text-center"
                     style={{
                       backfaceVisibility: 'hidden',
                       transform: 'rotateY(180deg)',
-                      background: `linear-gradient(135deg, ${colors.to}, ${colors.from})`,
-                      boxShadow: `0 20px 60px ${colors.glow}`,
                     }}
                   >
-                    <p className="text-white leading-relaxed">
-                      {objective.description}
-                    </p>
+                    <p className="text-gray-300 leading-relaxed">{objective.description}</p>
                   </div>
                 </motion.div>
               </motion.div>

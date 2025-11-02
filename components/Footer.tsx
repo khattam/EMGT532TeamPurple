@@ -14,38 +14,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-bg-dark-gray">
-      {/* Wave Divider */}
-      <div className="absolute top-0 left-0 right-0">
-        <svg
-          className="w-full h-24"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <motion.path
-            d="M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z"
-            fill="url(#wave-gradient)"
-            initial={{ d: "M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z" }}
-            animate={{
-              d: [
-                "M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z",
-                "M0,0 C300,50 900,50 1200,0 L1200,120 L0,120 Z",
-                "M0,0 C300,100 900,100 1200,0 L1200,120 L0,120 Z",
-              ],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <defs>
-            <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#0066FF" stopOpacity="0.3" />
-              <stop offset="50%" stopColor="#00D4FF" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.3" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
-      <div className="container mx-auto px-4 pt-32 pb-8">
+    <footer className="relative overflow-hidden bg-black border-t border-white/10">
+      <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
           <div>
@@ -54,18 +24,15 @@ export default function Footer() {
               Revolutionary drowsiness detection technology that keeps you alert and safe.
             </p>
             {/* Social Links */}
-            <div className="flex gap-4">
-              {['Twitter', 'LinkedIn', 'Instagram', 'YouTube'].map((social) => (
-                <motion.a
-                  key={social}
+            <div className="flex gap-3">
+              {['T', 'L', 'I', 'Y'].map((letter, i) => (
+                <a
+                  key={i}
                   href="#"
-                  className="w-10 h-10 glass rounded-full flex items-center justify-center hover:border-primary-cyan transition-colors"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label={social}
+                  className="w-10 h-10 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center hover:border-primary-cyan hover:bg-primary/10 transition-all text-sm font-semibold"
                 >
-                  {social[0]}
-                </motion.a>
+                  {letter}
+                </a>
               ))}
             </div>
           </div>

@@ -5,13 +5,6 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { appFeatures } from '@/lib/content';
 
-const iconMap: { [key: string]: string } = {
-  settings: '⚙️',
-  activity: '📊',
-  bell: '🔔',
-  cloud: '☁️',
-};
-
 export default function AppPreview() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
@@ -25,177 +18,109 @@ export default function AppPreview() {
   };
 
   return (
-    <section id="app" className="min-h-screen py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-dark via-bg-dark-gray to-bg-dark" />
-      </div>
+    <section id="app" className="min-h-screen py-32 relative overflow-hidden bg-black">
+      {/* Gradient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[120px]" />
 
-      <div className="container mx-auto px-4" ref={ref}>
-        {/* Section Header */}
+      <div className="container mx-auto px-6" ref={ref}>
+        {/* Header */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
+          className="text-center mb-20 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <motion.h2
-            className="text-4xl md:text-6xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            Companion <span className="gradient-text">App</span>
-          </motion.h2>
-          <motion.p
-            className="text-xl text-gray-400 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3 }}
-          >
-            Complete control at your fingertips. Available for iOS and Android.
-          </motion.p>
+          <h2 className="text-4xl md:text-6xl font-black mb-6">
+            Companion <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">App</span>
+          </h2>
+          <p className="text-xl text-gray-400">
+            Complete control at your fingertips. iOS & Android.
+          </p>
         </motion.div>
 
-        {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
           {/* Left: Phone Mockup */}
           <motion.div
             className="relative"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
             <div className="relative mx-auto w-full max-w-sm">
+              {/* Glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl" />
+              
               {/* Phone Frame */}
-              <div className="relative aspect-[9/19] glass rounded-[3rem] p-4 border-8 border-white/10">
+              <div className="relative aspect-[9/19] rounded-[3rem] border-8 border-white/10 bg-black overflow-hidden">
                 {/* Notch */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-bg-dark rounded-b-3xl" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-b-3xl z-10" />
                 
-                {/* Screen Content */}
-                <div className="relative h-full bg-gradient-to-br from-primary/20 to-secondary/20 rounded-[2rem] overflow-hidden">
-                  {/* App Screenshot Placeholder */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                    <div className="text-4xl mb-4">📱</div>
-                    <p className="text-gray-400 text-xs">
-                      IMAGE NEEDED: Mobile app interface screenshot showing:
-                      - Dashboard with drowsiness metrics and graphs
-                      - Device connection status indicator
-                      - Shock intensity slider (5 levels)
-                      - Real-time heart rate display
-                      - Sleep analytics charts
-                      Modern UI with dark theme, blue/cyan accents
-                      Clean, minimalist design
+                {/* Screen */}
+                <div className="relative h-full bg-gradient-to-br from-primary/10 to-secondary/10 p-6">
+                  <div className="text-center mt-8">
+                    <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary/30 to-primary-cyan/30 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full border-4 border-primary" />
+                    </div>
+                    <p className="text-xs text-gray-500">
+                      App interface: Dashboard with metrics, device controls, 
+                      shock intensity slider, real-time monitoring
                     </p>
                   </div>
-
-                  {/* Animated Screen Transitions */}
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-cyan to-accent"
-                    animate={{ scaleX: [0, 1, 0] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
                 </div>
               </div>
-
-              {/* Floating Elements */}
-              <motion.div
-                className="absolute -top-8 -right-8 glass rounded-2xl p-4"
-                animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                <div className="text-3xl">📊</div>
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-8 -left-8 glass rounded-2xl p-4"
-                animate={{ y: [0, 15, 0], rotate: [0, -5, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity }}
-              >
-                <div className="text-3xl">⚡</div>
-              </motion.div>
-
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl -z-10" />
             </div>
           </motion.div>
 
           {/* Right: Features & Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* App Features */}
+            {/* Features */}
             <div className="space-y-6 mb-12">
-              {appFeatures.map((feature, index) => (
+              {appFeatures.map((feature, i) => (
                 <motion.div
                   key={feature.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.3 + i * 0.1 }}
                   className="flex items-start gap-4"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + index * 0.1 }}
                 >
-                  <motion.div
-                    className="text-3xl"
-                    whileHover={{ scale: 1.2, rotate: 10 }}
-                  >
-                    {iconMap[feature.icon] || '✨'}
-                  </motion.div>
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-primary-cyan/20 flex items-center justify-center flex-shrink-0">
+                    <div className="w-5 h-5 rounded bg-gradient-to-br from-primary to-primary-cyan" />
+                  </div>
                   <div>
-                    <h3 className="text-xl font-bold text-white mb-1">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-400">
-                      {feature.description}
-                    </p>
+                    <h3 className="text-lg font-bold mb-1">{feature.title}</h3>
+                    <p className="text-gray-400 text-sm">{feature.description}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
 
             {/* App Store Badges */}
-            <motion.div
-              className="flex flex-wrap gap-4 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.8 }}
-            >
-              <motion.div
-                className="glass rounded-xl px-6 py-3 flex items-center gap-3 cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-2xl">🍎</span>
+            <div className="flex flex-wrap gap-4 mb-8">
+              <div className="px-6 py-3 rounded-lg border border-white/10 bg-white/5 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-cyan" />
                 <div>
-                  <div className="text-xs text-gray-400">Download on the</div>
+                  <div className="text-xs text-gray-400">Download on</div>
                   <div className="text-sm font-semibold">App Store</div>
                 </div>
-              </motion.div>
-
-              <motion.div
-                className="glass rounded-xl px-6 py-3 flex items-center gap-3 cursor-pointer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-2xl">🤖</span>
+              </div>
+              <div className="px-6 py-3 rounded-lg border border-white/10 bg-white/5 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-green-400" />
                 <div>
                   <div className="text-xs text-gray-400">Get it on</div>
                   <div className="text-sm font-semibold">Google Play</div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
-            {/* Email Signup Form */}
-            <motion.div
-              className="glass rounded-2xl p-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1 }}
-            >
-              <h3 className="text-xl font-bold mb-2">Get Launch Notifications</h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Be the first to know when the app launches
+            {/* Email Signup */}
+            <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+              <h3 className="text-lg font-bold mb-2">Get Launch Notifications</h3>
+              <p className="text-sm text-gray-400 mb-4">
+                Be first to know when the app launches
               </p>
               
               <form onSubmit={handleSubmit} className="flex gap-2">
@@ -204,29 +129,17 @@ export default function AppPreview() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors"
+                  className="flex-1 px-4 py-3 bg-black border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors"
                   required
                 />
-                <motion.button
+                <button
                   type="submit"
-                  className="px-6 py-3 bg-gradient-to-r from-primary to-primary-cyan rounded-xl text-white font-semibold"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="px-6 py-3 bg-gradient-to-r from-primary to-primary-cyan rounded-lg font-semibold hover:opacity-90 transition-opacity"
                 >
-                  {isSubmitted ? '✓' : 'Notify Me'}
-                </motion.button>
+                  {isSubmitted ? '✓' : 'Notify'}
+                </button>
               </form>
-
-              {isSubmitted && (
-                <motion.p
-                  className="text-accent text-sm mt-3"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  Thanks! We'll notify you at launch.
-                </motion.p>
-              )}
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>

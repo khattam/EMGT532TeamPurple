@@ -5,12 +5,21 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { technicalSpecs } from '@/lib/content';
 
+const categoryColors: { [key: string]: string } = {
+  Processing: 'from-blue-500 to-cyan-500',
+  Detection: 'from-purple-500 to-pink-500',
+  'Alert System': 'from-red-500 to-orange-500',
+  Interface: 'from-green-500 to-emerald-500',
+  Power: 'from-yellow-500 to-orange-500',
+  Design: 'from-indigo-500 to-purple-500',
+};
+
 export default function TechnicalSpecs() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const categories = Array.from(new Set(technicalSpecs.map(spec => spec.category)));
+  const categories = Array.from(new Set(technicalSpecs.map((spec) => spec.category)));
 
   return (
     <section id="specs" className="min-h-screen py-24 relative overflow-hidden">
@@ -50,7 +59,8 @@ export default function TechnicalSpecs() {
         <div className="max-w-4xl mx-auto space-y-4">
           {technicalSpecs.map((spec, index) => {
             const isExpanded = expandedId === spec.id;
-            
+            const gradient = categoryColors[spec.category] || 'from-primary to-primary-cyan';
+
             return (
               <motion.div
                 key={spec.id}
@@ -59,26 +69,22 @@ export default function TechnicalSpecs() {
                 transition={{ delay: 0.1 * index }}
               >
                 <motion.div
-                  className="glass rounded-2xl overflow-hidden cursor-pointer"
+                  className="glass rounded-2xl overflow-hidden cursor-pointer border border-white/10 hover:border-primary-cyan/50 transition-all"
                   whileHover={{ scale: 1.01 }}
                   onClick={() => setExpandedId(isExpanded ? null : spec.id)}
                 >
                   {/* Header */}
-                  <div className="p-6 flex items-center justify-between">
+                  <div className={`p-6 flex items-center justify-between bg-gradient-to-r ${gradient} bg-opacity-5`}>
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="px-3 py-1 bg-primary/20 text-primary-cyan text-xs rounded-full">
+                        <span className={`px-3 py-1 bg-gradient-to-r ${gradient} text-white text-xs rounded-full font-semibold`}>
                           {spec.category}
                         </span>
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-1">
-                        {spec.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm">
-                        {spec.description}
-                      </p>
+                      <h3 className="text-2xl font-bold text-white mb-1">{spec.title}</h3>
+                      <p className="text-gray-400 text-sm">{spec.description}</p>
                     </div>
-                    
+
                     <motion.div
                       animate={{ rotate: isExpanded ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
@@ -106,7 +112,7 @@ export default function TechnicalSpecs() {
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: i * 0.1 }}
-                                className="flex justify-between items-center p-4 bg-white/5 rounded-xl"
+                                className={`flex justify-between items-center p-4 rounded-xl bg-gradient-to-r ${gradient} bg-opacity-10 border border-white/5`}
                               >
                                 <span className="text-gray-400">{item.label}</span>
                                 <span className="text-white font-semibold">{item.value}</span>
@@ -132,7 +138,7 @@ export default function TechnicalSpecs() {
                               </div>
                               <div className="h-2 bg-white/10 rounded-full overflow-hidden">
                                 <motion.div
-                                  className="h-full bg-gradient-to-r from-primary to-primary-cyan"
+                                  className={`h-full bg-gradient-to-r ${gradient}`}
                                   initial={{ width: 0 }}
                                   animate={{ width: '95%' }}
                                   transition={{ duration: 1, delay: 0.5 }}
@@ -157,18 +163,21 @@ export default function TechnicalSpecs() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1 }}
         >
-          {categories.map((category, i) => (
-            <motion.div
-              key={category}
-              className="px-6 py-3 glass rounded-full text-sm"
-              whileHover={{ scale: 1.05 }}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 1 + i * 0.1 }}
-            >
-              {category}
-            </motion.div>
-          ))}
+          {categories.map((category, i) => {
+            const gradient = categoryColors[category] || 'from-primary to-primary-cyan';
+            return (
+              <motion.div
+                key={category}
+                className={`px-6 py-3 rounded-full text-sm font-semibold bg-gradient-to-r ${gradient} text-white`}
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: 1 + i * 0.1 }}
+              >
+                {category}
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         {/* Bottom CTA */}

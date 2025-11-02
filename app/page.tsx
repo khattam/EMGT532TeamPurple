@@ -11,10 +11,10 @@ export default function Home() {
     <>
       <main className="min-h-screen">
         <Hero />
-        <DesignObjectives />
         <FunctionalRequirements />
-        <TechnicalSpecs />
         <AppPreview />
+        <DesignObjectives />
+        <TechnicalSpecs />
         <FinalCTA />
       </main>
       <Footer />

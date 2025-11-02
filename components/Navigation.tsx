@@ -33,10 +33,10 @@ export default function Navigation() {
 
   const navLinks = [
     { id: 'hero', label: 'Home' },
-    { id: 'objectives', label: 'Design' },
     { id: 'features', label: 'Features' },
-    { id: 'specs', label: 'Specs' },
     { id: 'app', label: 'App' },
+    { id: 'objectives', label: 'Design' },
+    { id: 'specs', label: 'Specs' },
   ];
 
   return (
@@ -61,11 +61,17 @@ export default function Navigation() {
           {/* Logo */}
           <motion.button
             onClick={() => scrollToSection('hero')}
-            className="text-2xl font-bold gradient-text cursor-pointer"
+            className="flex items-center gap-2 cursor-pointer group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            StayAwake
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-cyan flex items-center justify-center">
+              <span className="text-2xl">⚡</span>
+            </div>
+            <div className="flex flex-col items-start">
+              <span className="text-xl font-bold gradient-text">StayAwake</span>
+              <span className="text-xs text-gray-400 -mt-1">Band</span>
+            </div>
           </motion.button>
 
           {/* Desktop Navigation */}

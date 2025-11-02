@@ -49,7 +49,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
           <div>
-            <h3 className="text-2xl font-bold gradient-text mb-4">StayAwake</h3>
+            <h3 className="text-2xl font-bold gradient-text mb-4">StayAwake Band</h3>
             <p className="text-gray-400 mb-6">
               Revolutionary drowsiness detection technology that keeps you alert and safe.
             </p>
@@ -134,7 +134,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm">
-            © 2024 StayAwake. All rights reserved. EMGT532 Team Purple.
+            © 2024 StayAwake Band. All rights reserved. EMGT532 Team Purple.
           </p>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-gray-400 hover:text-primary-cyan transition-colors">

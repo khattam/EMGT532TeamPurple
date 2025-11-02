@@ -1,9 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { useState } from 'react';
+import PreOrderModal from './PreOrderModal';
 
 export default function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section
       id="hero"
@@ -72,9 +74,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <span className="gradient-text">Stay</span>
+              <span className="gradient-text">StayAwake</span>
               <br />
-              <span className="text-white">Awake</span>
+              <span className="text-white">Band</span>
             </motion.h1>
 
             <motion.p
@@ -94,11 +96,12 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
             >
               <motion.button
+                onClick={() => setIsModalOpen(true)}
                 className="px-8 py-4 bg-gradient-to-r from-primary to-primary-cyan rounded-full text-white font-semibold text-lg relative overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">Get Early Access</span>
+                <span className="relative z-10">Pre-Order Now</span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-primary-cyan to-primary"
                   initial={{ x: '100%' }}
@@ -115,6 +118,8 @@ export default function Hero() {
                 Watch Demo
               </motion.button>
             </motion.div>
+            
+            <PreOrderModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
             {/* Stats */}
             <motion.div

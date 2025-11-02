@@ -18,7 +18,7 @@ export default function AppPreview() {
   };
 
   return (
-    <section id="app" className="min-h-screen py-32 relative overflow-hidden bg-black">
+    <section id="app" className="min-h-screen py-32 relative overflow-hidden bg-[#0a0a0a]">
       {/* Gradient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[120px]" />
 
@@ -31,7 +31,7 @@ export default function AppPreview() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-6xl font-black mb-6">
-            Companion <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">App</span>
+            <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">Companion</span> App
           </h2>
           <p className="text-xl text-gray-400">
             Complete control at your fingertips. iOS & Android.
@@ -96,24 +96,6 @@ export default function AppPreview() {
                   </div>
                 </motion.div>
               ))}
-            </div>
-
-            {/* App Store Badges */}
-            <div className="flex flex-wrap gap-4 mb-8">
-              <div className="px-6 py-3 rounded-lg border border-white/10 bg-white/5 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-cyan" />
-                <div>
-                  <div className="text-xs text-gray-400">Download on</div>
-                  <div className="text-sm font-semibold">App Store</div>
-                </div>
-              </div>
-              <div className="px-6 py-3 rounded-lg border border-white/10 bg-white/5 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-green-400" />
-                <div>
-                  <div className="text-xs text-gray-400">Get it on</div>
-                  <div className="text-sm font-semibold">Google Play</div>
-                </div>
-              </div>
             </div>
 
             {/* Email Signup */}

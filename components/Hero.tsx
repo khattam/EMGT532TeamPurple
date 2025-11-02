@@ -10,10 +10,10 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]"
     >
       {/* Subtle Grid Background */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="absolute inset-0"
           style={{
@@ -23,17 +23,19 @@ export default function Hero() {
         />
       </div>
 
-      {/* Gradient Glow */}
+      {/* Gradient Glows - Subtle */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-primary-cyan/8 rounded-full blur-[100px]" />
 
       <div className="container mx-auto px-6 z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-20 lg:gap-24 items-center">
             {/* Left: Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="lg:pr-8"
             >
               <motion.div
                 initial={{ opacity: 0 }}
@@ -46,7 +48,7 @@ export default function Hero() {
               </motion.div>
 
               <motion.h1
-                className="text-5xl md:text-7xl font-black mb-6 leading-[1.1]"
+                className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-[1.05]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
@@ -59,7 +61,7 @@ export default function Hero() {
               </motion.h1>
 
               <motion.p
-                className="text-xl text-gray-400 mb-8 leading-relaxed max-w-lg"
+                className="text-xl md:text-2xl text-gray-400 mb-8 leading-relaxed max-w-md"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
@@ -69,7 +71,7 @@ export default function Hero() {
               </motion.p>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 mb-12"
+                className="flex flex-col sm:flex-row gap-4 mb-10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
@@ -89,7 +91,7 @@ export default function Hero() {
 
               {/* Stats */}
               <motion.div
-                className="grid grid-cols-3 gap-8"
+                className="grid grid-cols-3 gap-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
@@ -100,10 +102,10 @@ export default function Hero() {
                   { value: 'IP67', label: 'Water Resistant' },
                 ].map((stat, i) => (
                   <div key={i}>
-                    <div className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent mb-1">
+                    <div className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent mb-1">
                       {stat.value}
                     </div>
-                    <div className="text-sm text-gray-500">{stat.label}</div>
+                    <div className="text-xs text-gray-500">{stat.label}</div>
                   </div>
                 ))}
               </motion.div>
@@ -111,12 +113,12 @@ export default function Hero() {
 
             {/* Right: Product Visual */}
             <motion.div
-              className="relative"
+              className="relative lg:pl-8"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative aspect-square">
+              <div className="relative aspect-square max-w-2xl mx-auto lg:mx-0">
                 {/* Glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-cyan/20 rounded-full blur-3xl" />
                 
@@ -156,6 +158,35 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <motion.div
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+      >
+        <motion.div
+          className="flex flex-col items-center gap-2 cursor-pointer"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="text-sm text-gray-400">Scroll to explore</span>
+          <svg
+            className="w-6 h-6 text-primary-cyan"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </motion.div>
+      </motion.div>
 
       <PreOrderModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>

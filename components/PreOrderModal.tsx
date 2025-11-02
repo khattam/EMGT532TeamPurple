@@ -112,9 +112,8 @@ export default function PreOrderModal({ isOpen, onClose }: PreOrderModalProps) {
                           placeholder="First Name"
                           value={formData.firstName}
                           onChange={(e) => handleChange('firstName', e.target.value)}
-                          className={`w-full px-4 py-3 bg-white/5 border ${
-                            errors.firstName ? 'border-red-500' : 'border-white/10'
-                          } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors`}
+                          className={`w-full px-4 py-3 bg-white/5 border ${errors.firstName ? 'border-red-500' : 'border-white/10'
+                            } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors`}
                         />
                         {errors.firstName && (
                           <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
@@ -126,9 +125,8 @@ export default function PreOrderModal({ isOpen, onClose }: PreOrderModalProps) {
                           placeholder="Last Name"
                           value={formData.lastName}
                           onChange={(e) => handleChange('lastName', e.target.value)}
-                          className={`w-full px-4 py-3 bg-white/5 border ${
-                            errors.lastName ? 'border-red-500' : 'border-white/10'
-                          } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors`}
+                          className={`w-full px-4 py-3 bg-white/5 border ${errors.lastName ? 'border-red-500' : 'border-white/10'
+                            } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors`}
                         />
                         {errors.lastName && (
                           <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
@@ -142,9 +140,8 @@ export default function PreOrderModal({ isOpen, onClose }: PreOrderModalProps) {
                         placeholder="Email Address"
                         value={formData.email}
                         onChange={(e) => handleChange('email', e.target.value)}
-                        className={`w-full px-4 py-3 bg-white/5 border ${
-                          errors.email ? 'border-red-500' : 'border-white/10'
-                        } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors`}
+                        className={`w-full px-4 py-3 bg-white/5 border ${errors.email ? 'border-red-500' : 'border-white/10'
+                          } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors`}
                       />
                       {errors.email && (
                         <p className="text-red-500 text-xs mt-1">{errors.email}</p>
@@ -157,9 +154,8 @@ export default function PreOrderModal({ isOpen, onClose }: PreOrderModalProps) {
                         placeholder="Phone Number"
                         value={formData.phone}
                         onChange={(e) => handleChange('phone', e.target.value)}
-                        className={`w-full px-4 py-3 bg-white/5 border ${
-                          errors.phone ? 'border-red-500' : 'border-white/10'
-                        } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors`}
+                        className={`w-full px-4 py-3 bg-white/5 border ${errors.phone ? 'border-red-500' : 'border-white/10'
+                          } rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-cyan transition-colors`}
                       />
                       {errors.phone && (
                         <p className="text-red-500 text-xs mt-1">{errors.phone}</p>

@@ -57,7 +57,7 @@
 }
 
 body {
-  background: #000000;
+  background: #0a0a0a;
   color: var(--text-white);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   margin: 0;

@@ -14,7 +14,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-black border-t border-white/10">
+    <footer className="relative overflow-hidden bg-[#0a0a0a] border-t border-white/10">
       <div className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
@@ -101,7 +101,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm">
-            © 2024 StayAwake Band. All rights reserved. EMGT532 Team Purple.
+            © 2025 StayAwake Band. All rights reserved. Medhansh Khattar.
           </p>
           <div className="flex gap-6 text-sm">
             <a href="#" className="text-gray-400 hover:text-primary-cyan transition-colors">

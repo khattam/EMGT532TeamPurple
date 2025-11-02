@@ -1,0 +1,28 @@
+# Images folder for StayAwake Band website
+
+Place your generated images here with these names:
+
+## Hero Section
+- hero-product.png (main product image)
+- hero-product-angle.png (optional alternative angle)
+
+## Features
+- feature-heart-rate.png
+- feature-alert.png
+- feature-sleep.png
+
+## App Preview
+- app-dashboard.png
+- app-alert.png
+
+## Lifestyle
+- lifestyle-driving.png
+- lifestyle-daily.png
+
+## Technical Specs
+- tech-water-resistance.png
+- tech-charging.png
+- tech-sensors.png
+
+## CTA Section
+- cta-hero.png

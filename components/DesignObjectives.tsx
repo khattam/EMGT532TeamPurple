@@ -23,7 +23,7 @@ export default function DesignObjectives() {
   };
 
   return (
-    <section id="objectives" className="min-h-screen py-32 relative overflow-hidden bg-black">
+    <section id="objectives" className="min-h-screen py-32 relative overflow-hidden bg-[#0a0a0a]">
       {/* Subtle Grid */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div
@@ -44,7 +44,7 @@ export default function DesignObjectives() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-6xl font-black mb-6">
-            Design <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">Objectives</span>
+            <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">Design</span> Objectives
           </h2>
           <p className="text-xl text-gray-400">
             Six core principles that define every aspect of the StayAwake Band

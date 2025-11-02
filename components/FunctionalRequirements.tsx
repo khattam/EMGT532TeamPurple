@@ -11,7 +11,7 @@ export default function FunctionalRequirements() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   return (
-    <section id="features" className="min-h-screen py-32 relative overflow-hidden bg-black">
+    <section id="features" className="min-h-screen py-32 relative overflow-hidden bg-[#0a0a0a]">
       {/* Subtle Grid */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div
@@ -32,7 +32,7 @@ export default function FunctionalRequirements() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-6xl font-black mb-6">
-            Key <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">Features</span>
+            <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">Key</span> Features
           </h2>
           <p className="text-xl text-gray-400">
             Advanced technology designed to keep you alert and safe
@@ -49,7 +49,7 @@ export default function FunctionalRequirements() {
               transition={{ delay: 0.1 * index, duration: 0.5 }}
             >
               <div
-                className="group relative h-full rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm overflow-hidden cursor-pointer hover:border-primary/50 transition-all"
+                className="group relative h-full rounded-2xl border border-white/20 bg-gradient-to-br from-white/[0.08] to-transparent backdrop-blur-sm overflow-hidden cursor-pointer hover:border-primary/60 transition-all"
                 onClick={() => setExpandedId(expandedId === feature.id ? null : feature.id)}
               >
                 {/* Gradient Overlay on Hover */}
@@ -58,7 +58,7 @@ export default function FunctionalRequirements() {
                 {/* Content */}
                 <div className="relative p-8">
                   {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary-cyan/20 flex items-center justify-center mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/30 to-primary-cyan/30 flex items-center justify-center mb-6 shadow-lg shadow-primary/20">
                     <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-primary to-primary-cyan" />
                   </div>
 

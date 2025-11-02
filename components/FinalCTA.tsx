@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import CTAButton from './CTAButton';
+import PreOrderModal from './PreOrderModal';
 
 export default function FinalCTA() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section className="py-24 relative overflow-hidden">
@@ -35,7 +37,7 @@ export default function FinalCTA() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
           >
-            Ready to <span className="gradient-text">Stay Awake</span>?
+            <span className="bg-gradient-to-r from-primary to-primary-cyan bg-clip-text text-transparent">Ready to Stay</span> Awake?
           </motion.h2>
 
           <motion.p
@@ -54,11 +56,12 @@ export default function FinalCTA() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.4 }}
           >
-            <CTAButton variant="primary" ctaId="final-cta-primary">
+            <CTAButton 
+              variant="primary" 
+              ctaId="final-cta-primary"
+              onClick={() => setIsModalOpen(true)}
+            >
               Pre-Order Now
-            </CTAButton>
-            <CTAButton variant="secondary" ctaId="final-cta-secondary">
-              Contact Sales
             </CTAButton>
           </motion.div>
 
@@ -84,6 +87,8 @@ export default function FinalCTA() {
           </motion.div>
         </motion.div>
       </div>
+
+      <PreOrderModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

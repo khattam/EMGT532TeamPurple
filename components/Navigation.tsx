@@ -2,13 +2,18 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import PreOrderModal from './PreOrderModal';
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
     const handleScroll = () => {
       const scrolled = window.scrollY > 50;
       setIsScrolled(scrolled);
@@ -16,10 +21,22 @@ export default function Navigation() {
       const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = (window.scrollY / windowHeight) * 100;
       setScrollProgress(progress);
+
+      // Show scroll bar while scrolling
+      setIsScrolling(true);
+
+      // Hide scroll bar after scrolling stops
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 1000);
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -44,7 +61,9 @@ export default function Navigation() {
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-cyan to-accent z-50"
         style={{ scaleX: scrollProgress / 100, transformOrigin: '0%' }}
-        initial={{ scaleX: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isScrolling ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
       />
 
       {/* Navigation Header */}
@@ -64,14 +83,16 @@ export default function Navigation() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="flex items-baseline gap-1">
-              <span className="text-2xl font-black tracking-tight bg-gradient-to-r from-primary via-primary-cyan to-primary bg-clip-text text-transparent">
+            {/* Text */}
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-3xl font-black tracking-tight bg-gradient-to-r from-primary via-primary-cyan to-primary bg-clip-text text-transparent">
                 Stay
               </span>
-              <span className="text-2xl font-black tracking-tight text-white">
+              <span className="text-3xl font-black tracking-tight text-white">
                 Awake
               </span>
             </div>
+            
             {/* Underline animation */}
             <motion.div
               className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-primary-cyan"
@@ -82,12 +103,12 @@ export default function Navigation() {
           </motion.button>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-3">
             {navLinks.map((link) => (
               <motion.button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="relative px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors group"
+                className="relative px-5 py-2 text-base font-semibold text-gray-300 hover:text-white transition-colors group"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -97,14 +118,16 @@ export default function Navigation() {
             ))}
             
             <motion.button
-              onClick={() => scrollToSection('hero')}
-              className="ml-4 px-6 py-2.5 bg-gradient-to-r from-primary to-primary-cyan rounded-xl text-sm font-bold text-white shadow-lg shadow-primary/50 hover:shadow-primary/70 transition-shadow"
+              onClick={() => setIsModalOpen(true)}
+              className="ml-4 px-7 py-3 bg-gradient-to-r from-primary to-primary-cyan rounded-xl text-base font-bold text-white shadow-lg shadow-primary/50 hover:shadow-primary/70 transition-shadow"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               Pre-Order
             </motion.button>
           </div>
+          
+          <PreOrderModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
           {/* Mobile Menu Button */}
           <motion.button

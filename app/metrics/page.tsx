@@ -1,11 +1,48 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+interface AnalyticsData {
+  uniqueUsers: number;
+  totalPageViews: number;
+  avgDuration: number;
+  activeNow: number;
+  clicksByElement: Array<[string, number]>;
+  viewsByPage: Array<[string, number]>;
+  chartData: Array<{
+    date: string;
+    users: number;
+    pageViews: number;
+  }>;
+}
 
 export default function MetricsPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchAnalytics();
+    }
+  }, [isAuthenticated]);
+
+  const fetchAnalytics = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/analytics');
+      if (response.ok) {
+        const data = await response.json();
+        setAnalytics(data);
+      }
+    } catch (err) {
+      console.error('Failed to fetch analytics:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,10 +83,6 @@ export default function MetricsPage() {
               Access Dashboard
             </button>
           </form>
-          
-          <p className="text-xs text-gray-500 text-center mt-6">
-            Password: stayawake2024
-          </p>
         </div>
       </div>
     );
@@ -69,62 +102,97 @@ export default function MetricsPage() {
         </div>
 
         <div className="space-y-6">
-          {/* Instructions */}
-          <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
-            <h2 className="text-xl font-bold text-white mb-4">📊 View Full Analytics</h2>
-            <p className="text-gray-400 mb-4">
-              To access detailed analytics and metrics:
-            </p>
-            <ol className="list-decimal list-inside space-y-2 text-gray-300">
-              <li>Go to your Vercel dashboard</li>
-              <li>Select your project: <span className="text-primary-cyan">stayawakemkhattar</span></li>
-              <li>Click on the "Analytics" tab</li>
-              <li>View real-time visitor data, page views, and performance metrics</li>
-            </ol>
-            <a
-              href="https://vercel.com/dashboard"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mt-4 px-6 py-3 bg-gradient-to-r from-primary to-primary-cyan rounded-lg font-semibold text-white hover:opacity-90 transition-opacity"
-            >
-              Open Vercel Dashboard →
-            </a>
-          </div>
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-cyan"></div>
+              <p className="text-gray-400 mt-4">Loading analytics...</p>
+            </div>
+          ) : analytics ? (
+            <>
+              {/* Real-time Stats */}
+              <div className="grid md:grid-cols-4 gap-6">
+                <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                  <div className="text-sm text-gray-400 mb-2">Active Now</div>
+                  <div className="text-3xl font-bold text-green-400">{analytics.activeNow}</div>
+                  <div className="text-xs text-gray-500 mt-2">Live visitors</div>
+                </div>
 
-          {/* Quick Stats Placeholder */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
-              <div className="text-sm text-gray-400 mb-2">Total Visitors</div>
-              <div className="text-3xl font-bold text-primary-cyan">-</div>
-              <div className="text-xs text-gray-500 mt-2">Enable analytics in Vercel</div>
-            </div>
-            
-            <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
-              <div className="text-sm text-gray-400 mb-2">Page Views</div>
-              <div className="text-3xl font-bold text-primary-cyan">-</div>
-              <div className="text-xs text-gray-500 mt-2">Enable analytics in Vercel</div>
-            </div>
-            
-            <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
-              <div className="text-sm text-gray-400 mb-2">Avg. Performance</div>
-              <div className="text-3xl font-bold text-primary-cyan">-</div>
-              <div className="text-xs text-gray-500 mt-2">Enable Speed Insights</div>
-            </div>
-          </div>
+                <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                  <div className="text-sm text-gray-400 mb-2">Unique Visitors</div>
+                  <div className="text-3xl font-bold text-primary-cyan">{analytics.uniqueUsers.toLocaleString()}</div>
+                  <div className="text-xs text-gray-500 mt-2">All time</div>
+                </div>
+                
+                <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                  <div className="text-sm text-gray-400 mb-2">Page Views</div>
+                  <div className="text-3xl font-bold text-primary-cyan">{analytics.totalPageViews.toLocaleString()}</div>
+                  <div className="text-xs text-gray-500 mt-2">All time</div>
+                </div>
+                
+                <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                  <div className="text-sm text-gray-400 mb-2">Avg. Session</div>
+                  <div className="text-3xl font-bold text-primary-cyan">{Math.floor(analytics.avgDuration / 60)}m</div>
+                  <div className="text-xs text-gray-500 mt-2">{analytics.avgDuration % 60}s average</div>
+                </div>
+              </div>
 
-          {/* Enable Analytics Instructions */}
-          <div className="p-6 rounded-2xl border border-primary/20 bg-primary/5">
-            <h3 className="text-lg font-bold text-white mb-3">🚀 Enable Analytics</h3>
-            <p className="text-gray-300 mb-3">
-              To start collecting data:
-            </p>
-            <ol className="list-decimal list-inside space-y-2 text-gray-300 text-sm">
-              <li>Go to your Vercel project settings</li>
-              <li>Navigate to "Analytics" section</li>
-              <li>Click "Enable Analytics"</li>
-              <li>Data will start appearing within 24 hours</li>
-            </ol>
-          </div>
+              {/* Top Pages */}
+              <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                <h2 className="text-xl font-bold text-white mb-4">📄 Top Pages</h2>
+                <div className="space-y-2">
+                  {analytics.viewsByPage.map(([page, views], idx) => (
+                    <div key={idx} className="flex items-center justify-between py-2 border-b border-white/5">
+                      <span className="text-gray-300">{page}</span>
+                      <span className="text-primary-cyan font-semibold">{views} views</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Top Clicks */}
+              <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                <h2 className="text-xl font-bold text-white mb-4">🖱️ Most Clicked Elements</h2>
+                <div className="space-y-2">
+                  {analytics.clicksByElement.map(([element, clicks], idx) => (
+                    <div key={idx} className="flex items-center justify-between py-2 border-b border-white/5">
+                      <span className="text-gray-300 text-sm font-mono truncate">{element}</span>
+                      <span className="text-primary-cyan font-semibold">{clicks} clicks</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Chart Data */}
+              <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                <h2 className="text-xl font-bold text-white mb-4">📈 Daily Traffic (Last 30 Days)</h2>
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {analytics.chartData.slice().reverse().map((day, idx) => (
+                    <div key={idx} className="flex items-center justify-between py-2 border-b border-white/5">
+                      <span className="text-gray-400 text-sm">{new Date(day.date).toLocaleDateString()}</span>
+                      <div className="flex gap-4">
+                        <span className="text-primary-cyan">{day.users} users</span>
+                        <span className="text-gray-500">{day.pageViews} views</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                onClick={fetchAnalytics}
+                className="px-6 py-3 bg-gradient-to-r from-primary to-primary-cyan rounded-lg font-semibold text-white hover:opacity-90 transition-opacity"
+              >
+                Refresh Data
+              </button>
+            </>
+          ) : (
+            <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+              <h2 className="text-xl font-bold text-white mb-4">⚠️ Analytics Not Configured</h2>
+              <p className="text-gray-400">
+                Please configure the Google Analytics API credentials to view data.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

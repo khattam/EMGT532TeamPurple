@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 import PreOrderModal from './PreOrderModal';
 
 export default function Hero() {
@@ -29,7 +30,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-6 z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-20 lg:gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: Content */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -71,7 +72,7 @@ export default function Hero() {
               </motion.p>
 
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 mb-10"
+                className="mb-10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
@@ -82,10 +83,6 @@ export default function Hero() {
                 >
                   <span className="relative z-10">Pre-Order Now</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-cyan to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                </button>
-
-                <button className="px-8 py-4 rounded-lg font-semibold text-white border border-white/10 hover:border-primary-cyan hover:bg-white/5 transition-all">
-                  Watch Demo
                 </button>
               </motion.div>
 
@@ -113,26 +110,44 @@ export default function Hero() {
 
             {/* Right: Product Visual */}
             <motion.div
-              className="relative lg:pl-8"
+              className="relative lg:-ml-12"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative aspect-square max-w-2xl mx-auto lg:mx-0">
-                {/* Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-cyan/20 rounded-full blur-3xl" />
+              <div className="relative aspect-square max-w-3xl mx-auto lg:mx-0">
+                {/* Enhanced Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary-cyan/30 rounded-full blur-3xl animate-pulse" />
                 
-                {/* Product Placeholder */}
-                <div className="relative w-full h-full rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm flex items-center justify-center p-8">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/20 to-primary-cyan/20 flex items-center justify-center">
-                      <div className="w-24 h-24 rounded-full border-4 border-primary/50" />
-                    </div>
-                    <p className="text-sm text-gray-500 leading-relaxed">
-                      Product image: Premium wearable device with OLED display, 
-                      dark silicone band, floating in space with dramatic blue lighting
-                    </p>
-                  </div>
+                {/* Spotlight Effect */}
+                <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40 rounded-full" />
+                
+                {/* Product Container with Border */}
+                <div className="relative w-full h-full rounded-3xl border border-primary-cyan/20 bg-gradient-to-br from-primary/5 to-primary-cyan/5 backdrop-blur-sm p-8 shadow-2xl shadow-primary-cyan/10">
+                  {/* Inner Glow Border */}
+                  <div className="absolute inset-0 rounded-3xl border-2 border-primary-cyan/10 blur-sm" />
+                  
+                  {/* Product Image */}
+                  <motion.div
+                    className="relative w-full h-full"
+                    animate={{ 
+                      rotateY: [0, 5, 0, -5, 0],
+                      rotateX: [0, -2, 0, 2, 0]
+                    }}
+                    transition={{ 
+                      duration: 8, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Image
+                      src="/images/HeroSectionPic1.png"
+                      alt="StayAwake Band - Premium Smartwatch"
+                      fill
+                      className="object-contain drop-shadow-[0_0_50px_rgba(0,217,255,0.3)]"
+                      priority
+                    />
+                  </motion.div>
                 </div>
 
                 {/* Floating Stats */}

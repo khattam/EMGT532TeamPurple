@@ -74,14 +74,18 @@ export default function DesignObjectives() {
                 >
                   {/* Front */}
                   <div
-                    className="absolute inset-0 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm p-8 flex flex-col items-center justify-center text-center"
+                    className="absolute inset-0 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm p-8 flex flex-col items-center justify-center text-center group"
                     style={{ backfaceVisibility: 'hidden' }}
                   >
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary-cyan/20 flex items-center justify-center mb-6">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-cyan" />
-                    </div>
                     <h3 className="text-2xl font-bold mb-3">{objective.title}</h3>
-                    <p className="text-sm text-gray-500">Click to learn more</p>
+                    <svg 
+                      className="w-5 h-5 text-gray-500 group-hover:text-primary-cyan transition-colors" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
                   </div>
 
                   {/* Back */}

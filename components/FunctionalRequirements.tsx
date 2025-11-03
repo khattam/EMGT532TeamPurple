@@ -3,7 +3,58 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { functionalRequirements } from '@/lib/content';
+import Image from 'next/image';
+
+const features = [
+  {
+    id: 'sleepiness-detection',
+    title: 'Drowsiness Detection',
+    description: 'Advanced AI-powered sensors monitor your alertness levels in real-time',
+    image: '/images/DrowsinessDetected.png',
+    details: [
+      'Multi-sensor fusion technology',
+      'Real-time biometric analysis',
+      'Predictive drowsiness alerts',
+      'Adaptive learning algorithms'
+    ]
+  },
+  {
+    id: 'heart-rate',
+    title: 'Heart Rate Monitoring',
+    description: 'Continuous heart rate tracking with medical-grade accuracy',
+    image: '/images/newH.png',
+    details: [
+      '24/7 continuous monitoring',
+      'Abnormal heart rate alerts',
+      'Heart rate variability analysis',
+      'Stress level detection'
+    ]
+  },
+  {
+    id: 'sleep-tracking',
+    title: 'Sleep Tracking',
+    description: 'Comprehensive sleep analysis to optimize your rest and recovery',
+    image: '/images/SleepTracking.png',
+    details: [
+      'Sleep stage detection (REM, deep, light)',
+      'Sleep quality scoring',
+      'Smart wake-up alarms',
+      'Sleep pattern insights'
+    ]
+  },
+  {
+    id: 'charging',
+    title: 'Fast Charging',
+    description: 'Quick and convenient charging for all-day use',
+    image: '/images/Charging 169.png',
+    details: [
+      'USB-C fast charging',
+      'Full charge in under 2 hours',
+      '24+ hour battery life',
+      'Low battery alerts'
+    ]
+  }
+];
 
 export default function FunctionalRequirements() {
   const ref = useRef(null);
@@ -41,7 +92,7 @@ export default function FunctionalRequirements() {
 
         {/* Features Grid */}
         <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {functionalRequirements.map((feature, index) => (
+          {features.map((feature, index) => (
             <motion.div
               key={feature.id}
               initial={{ opacity: 0, y: 30 }}
@@ -56,10 +107,15 @@ export default function FunctionalRequirements() {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary-cyan/0 group-hover:from-primary/5 group-hover:to-primary-cyan/5 transition-all" />
 
                 {/* Content */}
-                <div className="relative p-8">
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/30 to-primary-cyan/30 flex items-center justify-center mb-6 shadow-lg shadow-primary/20">
-                    <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-primary to-primary-cyan" />
+                <div className="relative p-6">
+                  {/* Feature Image */}
+                  <div className="relative w-full aspect-video mb-6 rounded-xl overflow-hidden bg-black/40">
+                    <Image
+                      src={feature.image}
+                      alt={feature.title}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
                   <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
@@ -109,16 +165,6 @@ export default function FunctionalRequirements() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-
-                  {/* Image Placeholder Note */}
-                  <div className="mt-6 p-4 rounded-lg bg-white/5 border border-white/5">
-                    <p className="text-xs text-gray-500">
-                      {feature.id === 'sleepiness-detection' && 'Image: Sensor array with blue glow, biometric visualization'}
-                      {feature.id === 'shock-mechanism' && 'Image: Progressive intensity levels, electrical visualization'}
-                      {feature.id === 'display' && 'Image: OLED display with colorful interface, touch interaction'}
-                      {feature.id === 'charging' && 'Image: USB-C charging, glowing battery indicator'}
-                    </p>
-                  </div>
                 </div>
               </div>
             </motion.div>

@@ -36,19 +36,66 @@ Angled side view of a black smartwatch on someone's wrist, the watch face is til
 Top-down bird's eye view of a black smartwatch lying flat on a dark bedside table next to a pillow. The watch display glows softly showing "23:45" and a sleep tracking screen with a crescent moon icon, sleep graph, and "7h 30m" in soft cyan blue. Very dark nighttime atmosphere, minimal blue ambient lighting, cozy bedroom setting, professional lifestyle photography, peaceful mood.
 ```
 
+### Fast Charging
+**Prompt:**
+```
+Close-up product shot of a black smartwatch sitting on a modern wireless charging pad or connected to a USB-C cable. The watch display shows a large battery icon at "85%" with a charging bolt symbol in bright cyan blue. Soft blue glow emanates from the charging indicator. Dark background with subtle blue accent lighting, clean modern aesthetic, professional product photography, tech-forward composition.
+```
+
 ---
 
 ## 3. App Preview Section - Mobile App Screenshots
 **Dimensions Needed:** Mobile phone mockup (portrait, 1080x1920 or similar)
 
-**Prompt:**
+**MAIN APP DASHBOARD - Comprehensive View:**
 ```
-Modern mobile app interface design for a drowsiness detection app on a dark theme. The screen shows a dashboard with a large circular progress indicator in cyan blue showing alertness level at 85%. Below are stats cards showing "Heart Rate: 72 BPM", "Sleep Quality: 98%", and "Alert Level: Active" in green. The UI uses a black background with cyan blue (#00D9FF) and blue (#0066FF) accent colors. Clean, minimalist design with rounded corners and subtle gradients. Professional UI/UX design, modern tech aesthetic.
+Professional mobile app UI mockup (portrait 9:16 ratio) for StayAwake Band companion app. Dark theme (#0a0a0a background). 
+
+TOP SECTION: Status bar showing time and battery. Large hero card with gradient border (cyan to blue) displaying:
+- Central circular gauge showing "ALERTNESS LEVEL: 87%" in large cyan text with animated ring
+- Small "ACTIVE" badge in green
+
+MIDDLE SECTION - Key Metrics Grid (2x2 cards with glass morphism effect):
+Card 1: Heart icon + "72 BPM" + "Normal" in cyan
+Card 2: Moon icon + "7h 30m" + "Sleep Quality: 94%" in blue  
+Card 3: Zap icon + "Alert Level: Medium" in orange
+Card 4: Battery icon + "18h remaining" in green
+
+BOTTOM SECTION - SHOCK SETTINGS (MAIN USP):
+Large prominent card with warning icon and title "SHOCK INTENSITY SETTINGS"
+- Horizontal slider with 5 levels: "Off | Low | Medium | High | Max"
+- Currently set to "Medium" (highlighted in cyan)
+- Visual indicator showing intensity with animated bars
+- Toggle switch "Auto-adjust based on drowsiness" (ON)
+- Small text: "Progressive alerts: Vibration → Sound → Shock"
+
+FOOTER: Navigation bar with 5 icons (Home, Stats, Settings, History, Profile)
+
+Design: Dark theme, cyan (#00D9FF) and blue (#0066FF) accents, glass morphism cards, subtle gradients, modern rounded corners, professional spacing. Ultra-realistic mobile UI, 8K quality.
 ```
 
-**Alternative - Alert Screen:**
+**ALTERNATIVE - Alert/Shock Screen:**
 ```
-Mobile app alert screen on dark background showing "Drowsiness Detected" warning with a large pulsing icon in orange/yellow. Below shows recommended actions: "Take a break", "Drink water", "Get fresh air". Dark theme with cyan blue accents, modern UI design, clean typography.
+Mobile app alert screen (portrait 9:16) showing active drowsiness detection. Dark background with pulsing orange/red gradient overlay. 
+
+CENTER: Large warning icon with "DROWSINESS DETECTED" in bold red text. Animated shock wave ripples emanating from center.
+
+SHOCK STATUS CARD:
+- "Shock Level: MEDIUM" with intensity meter
+- "Delivering alert in 3... 2... 1..." countdown
+- Animated lightning bolt icon pulsing
+
+ACTION BUTTONS:
+- Large "I'M AWAKE" button (cyan, prominent)
+- "Snooze 5 min" (gray, secondary)
+- "Adjust Intensity" (blue, tertiary)
+
+BOTTOM STATS:
+- "Alerts today: 3"
+- "Last alert: 15 min ago"  
+- "Effectiveness: 98%"
+
+Dark theme with urgent orange/red accents, modern UI, professional design.
 ```
 
 ---

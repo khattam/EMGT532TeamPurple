@@ -44,6 +44,7 @@ Close-up product shot of a black smartwatch sitting on a modern wireless chargin
 
 ---
 
+```
 ## 3. App Preview Section - Mobile App Screenshots
 **Dimensions Needed:** Mobile phone mockup (portrait, 1080x1920 or similar)
 
@@ -72,7 +73,6 @@ Large prominent card with warning icon and title "SHOCK INTENSITY SETTINGS"
 FOOTER: Navigation bar with 5 icons (Home, Stats, Settings, History, Profile)
 
 Design: Dark theme, cyan (#00D9FF) and blue (#0066FF) accents, glass morphism cards, subtle gradients, modern rounded corners, professional spacing. Ultra-realistic mobile UI, 8K quality.
-```
 
 **ALTERNATIVE - Alert/Shock Screen:**
 ```

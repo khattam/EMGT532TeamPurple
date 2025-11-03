@@ -187,10 +187,16 @@ export default function MetricsPage() {
             </>
           ) : (
             <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
-              <h2 className="text-xl font-bold text-white mb-4">⚠️ Analytics Not Configured</h2>
-              <p className="text-gray-400">
-                Please configure the Google Analytics API credentials to view data.
+              <h2 className="text-xl font-bold text-white mb-4">📊 No Data Yet</h2>
+              <p className="text-gray-400 mb-4">
+                Analytics tracking is active! Data will appear here once visitors start using the site.
               </p>
+              <button
+                onClick={fetchAnalytics}
+                className="px-6 py-3 bg-gradient-to-r from-primary to-primary-cyan rounded-lg font-semibold text-white hover:opacity-90 transition-opacity"
+              >
+                Refresh Data
+              </button>
             </div>
           )}
         </div>

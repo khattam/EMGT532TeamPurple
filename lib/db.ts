@@ -1,9 +1,5 @@
-// Simple JSON file-based storage for analytics
-import fs from 'fs';
-import path from 'path';
-
-const DATA_DIR = path.join(process.cwd(), 'data');
-const ANALYTICS_FILE = path.join(DATA_DIR, 'analytics.json');
+// In-memory storage for analytics (resets on deployment)
+// For production, consider using Vercel KV, Redis, or a database
 
 export interface StoredEvent {
   userId: string;
@@ -15,21 +11,16 @@ export interface StoredEvent {
   duration?: number;
 }
 
-// Ensure data directory exists
-if (!fs.existsSync(DATA_DIR)) {
-  fs.mkdirSync(DATA_DIR, { recursive: true });
-}
-
-// Initialize file if it doesn't exist
-if (!fs.existsSync(ANALYTICS_FILE)) {
-  fs.writeFileSync(ANALYTICS_FILE, JSON.stringify({ events: [] }));
-}
+// In-memory storage
+let events: StoredEvent[] = [];
 
 export function saveEvent(event: StoredEvent) {
   try {
-    const data = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf-8'));
-    data.events.push(event);
-    fs.writeFileSync(ANALYTICS_FILE, JSON.stringify(data, null, 2));
+    events.push(event);
+    // Keep only last 10000 events to prevent memory issues
+    if (events.length > 10000) {
+      events = events.slice(-10000);
+    }
   } catch (error) {
     console.error('Error saving event:', error);
   }
@@ -37,8 +28,6 @@ export function saveEvent(event: StoredEvent) {
 
 export function getAnalytics() {
   try {
-    const data = JSON.parse(fs.readFileSync(ANALYTICS_FILE, 'utf-8'));
-    const events: StoredEvent[] = data.events || [];
 
     // Calculate metrics
     const uniqueUsers = new Set(events.map(e => e.userId)).size;

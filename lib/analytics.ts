@@ -70,12 +70,20 @@ export class Analytics {
             timestamp: Date.now(),
         };
 
+        console.log('📊 Tracking:', event, payload);
+
         // Send to API
         fetch('/api/track', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...payload, ...data }),
-        }).catch(err => console.error('Analytics error:', err));
+        })
+            .then(res => {
+                console.log('✅ Track response:', res.status);
+                return res.json();
+            })
+            .then(data => console.log('Response data:', data))
+            .catch(err => console.error('❌ Analytics error:', err));
     }
 
     static getSessionDuration(): number {

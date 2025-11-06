@@ -46,8 +46,8 @@ export default function FinalCTA() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.3 }}
           >
-            Join thousands of early adopters who are taking control of their alertness.
-            Pre-order now and get exclusive launch pricing.
+            Discover how StayAwake Band can help you stay alert and safe.
+            Learn more about our innovative drowsiness detection technology.
           </motion.p>
 
           <motion.div
@@ -61,7 +61,7 @@ export default function FinalCTA() {
               ctaId="final-cta-primary"
               onClick={() => setIsModalOpen(true)}
             >
-              Pre-Order Now
+              Learn More
             </CTAButton>
           </motion.div>
 

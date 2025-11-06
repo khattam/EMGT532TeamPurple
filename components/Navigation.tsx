@@ -123,7 +123,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              Pre-Order
+              Learn More
             </motion.button>
           </div>
           
@@ -184,13 +184,13 @@ export default function Navigation() {
                   </motion.button>
                 ))}
                 <motion.button
-                  onClick={() => scrollToSection('hero')}
+                  onClick={() => setIsModalOpen(true)}
                   className="mt-4 px-4 py-3 bg-gradient-to-r from-primary to-primary-cyan rounded-xl text-white font-bold shadow-lg shadow-primary/50"
                   initial={{ x: 50, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: navLinks.length * 0.1 }}
                 >
-                  Pre-Order Now
+                  Learn More
                 </motion.button>
               </div>
             </motion.div>

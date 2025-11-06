@@ -81,7 +81,7 @@ export default function Hero() {
                   onClick={() => setIsModalOpen(true)}
                   className="group relative px-8 py-4 bg-gradient-to-r from-primary to-primary-cyan rounded-lg font-semibold text-white overflow-hidden"
                 >
-                  <span className="relative z-10">Pre-Order Now</span>
+                  <span className="relative z-10">Learn More</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-primary-cyan to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
               </motion.div>
